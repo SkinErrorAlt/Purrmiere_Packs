@@ -1,0 +1,13 @@
+{
+  "id": "old_web",
+  "label": "Old web (1999)",
+  "kind": "code",
+  "about": "Homepage pixel art from the early web: banners, dividers, tiled backgrounds, 88x31 buttons, counters, stamps and window frames, drawn a pixel at a time and animated at GIF speeds. Includes a ready made 1999 homepage.",
+  "source": "Purrmiere",
+  "licence": "Made for Purrmiere. Free to use in your videos.",
+  "era": "1996 to 2001",
+  "order": 0,
+  "crisp": true,
+  "groups": ["Banners", "Dividers", "Backgrounds", "Small objects", "Stamps", "Frames", "Layouts"],
+  "min_purrmiere": 1
+}

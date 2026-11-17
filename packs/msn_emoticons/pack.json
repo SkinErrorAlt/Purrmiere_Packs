@@ -1,0 +1,20 @@
+{
+  "id": "msn_emoticons",
+  "label": "MSN emoticons",
+  "kind": "assets",
+  "about": "The original Windows Live Messenger emoticons at their real 19 pixel size. Animated ones are APNG files that loop at their own timing.",
+  "source": "https://github.com/bernzrdo/msn-emoticons",
+  "licence": "Microsoft artwork collected in the bernzrdo/msn-emoticons repository, which states no licence. Bundled at the owner's request for personal use; not for redistribution.",
+  "era": "2005 to 2012",
+  "order": 10,
+  "crisp": true,
+  "groups": [
+    "Smileys",
+    "People and love",
+    "Animals",
+    "Sky and weather",
+    "Things",
+    "Unused"
+  ],
+  "min_purrmiere": 1
+}

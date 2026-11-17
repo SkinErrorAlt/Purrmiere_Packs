@@ -1,0 +1,41 @@
+{
+  "id": "old_web_div_crayon",
+  "group": "Dividers",
+  "label": "Crayon line",
+  "size": [
+    640,
+    36
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 320,
+      "min": 60,
+      "max": 1600
+    }
+  ],
+  "old_web": "div_crayon",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "div_crayon",
+    "group": "Dividers",
+    "label": "Crayon line",
+    "size": [
+      320,
+      18
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [],
+    "defaults": {}
+  }
+}

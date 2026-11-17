@@ -1,0 +1,49 @@
+{
+  "id": "old_web_div_flame",
+  "group": "Dividers",
+  "label": "Flame bar",
+  "size": [
+    640,
+    48
+  ],
+  "full_frame": false,
+  "loop": 0.666666666666667,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 320,
+      "min": 24,
+      "max": 1600
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 24,
+      "min": 10,
+      "max": 120
+    }
+  ],
+  "old_web": "div_flame",
+  "frames": 8,
+  "fps": 12.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "div_flame",
+    "group": "Dividers",
+    "label": "Flame bar",
+    "size": [
+      320,
+      24
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 12.0,
+    "fields": [],
+    "defaults": {}
+  }
+}

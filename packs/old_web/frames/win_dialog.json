@@ -1,0 +1,85 @@
+{
+  "id": "old_web_win_dialog",
+  "group": "Frames",
+  "label": "Retro desktop dialog",
+  "size": [
+    400,
+    184
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Window title",
+      "type": "text",
+      "default": "Message"
+    },
+    {
+      "key": "text2",
+      "label": "Message",
+      "type": "text",
+      "default": "Are you sure you want to leave my page? There is more to see!"
+    },
+    {
+      "key": "colour_a",
+      "label": "Title bar colour",
+      "type": "colour",
+      "default": [
+        0.4,
+        0.0,
+        0.6,
+        1.0
+      ]
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 200,
+      "min": 130,
+      "max": 900
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 92,
+      "min": 64,
+      "max": 600
+    }
+  ],
+  "old_web": "win_dialog",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "win_dialog",
+    "group": "Frames",
+    "label": "Retro desktop dialog",
+    "size": [
+      200,
+      92
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "text2",
+      "colour_a"
+    ],
+    "defaults": {
+      "text": "Message",
+      "text2": "Are you sure you want to leave my page? There is more to see!",
+      "colour_a": [
+        0.4,
+        0.0,
+        0.6,
+        1.0
+      ]
+    }
+  }
+}

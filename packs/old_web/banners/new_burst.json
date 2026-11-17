@@ -1,0 +1,95 @@
+{
+  "id": "old_web_new_burst",
+  "group": "Banners",
+  "label": "New! burst",
+  "size": [
+    128,
+    96
+  ],
+  "full_frame": false,
+  "loop": 0.75,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "NEW!"
+    },
+    {
+      "key": "colour_a",
+      "label": "Main colour",
+      "type": "colour",
+      "default": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "key": "colour_b",
+      "label": "Second colour",
+      "type": "colour",
+      "default": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "key": "text_dx",
+      "label": "Words moved across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "text_dy",
+      "label": "Words moved down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    }
+  ],
+  "old_web": "new_burst",
+  "frames": 6,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "new_burst",
+    "group": "Banners",
+    "label": "New! burst",
+    "size": [
+      64,
+      48
+    ],
+    "scale": 2,
+    "frames": 6,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "colour_a",
+      "colour_b"
+    ],
+    "defaults": {
+      "text": "NEW!",
+      "colour_a": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "colour_b": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ]
+    }
+  }
+}

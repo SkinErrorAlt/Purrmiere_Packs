@@ -1,0 +1,59 @@
+{
+  "id": "old_web_construct_digger",
+  "group": "Banners",
+  "label": "Under construction, digger",
+  "size": [
+    480,
+    120
+  ],
+  "full_frame": false,
+  "loop": 0.8,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "UNDER"
+    },
+    {
+      "key": "text2",
+      "label": "Second line",
+      "type": "text",
+      "default": "CONSTRUCTION"
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 240,
+      "min": 200,
+      "max": 960
+    }
+  ],
+  "old_web": "construct_digger",
+  "frames": 8,
+  "fps": 10.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "construct_digger",
+    "group": "Banners",
+    "label": "Under construction, digger",
+    "size": [
+      240,
+      60
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 10.0,
+    "fields": [
+      "text",
+      "text2"
+    ],
+    "defaults": {
+      "text": "UNDER",
+      "text2": "CONSTRUCTION"
+    }
+  }
+}

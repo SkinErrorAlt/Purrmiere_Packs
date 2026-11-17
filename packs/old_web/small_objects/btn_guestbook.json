@@ -1,0 +1,67 @@
+{
+  "id": "old_web_btn_guestbook",
+  "group": "Small objects",
+  "label": "88x31 button, sign my guestbook",
+  "size": [
+    176,
+    62
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "SIGN MY"
+    },
+    {
+      "key": "text2",
+      "label": "Second line",
+      "type": "text",
+      "default": "GUESTBOOK"
+    },
+    {
+      "key": "text_dx",
+      "label": "Words moved across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "text_dy",
+      "label": "Words moved down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    }
+  ],
+  "old_web": "btn_guestbook",
+  "frames": 8,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "btn_guestbook",
+    "group": "Small objects",
+    "label": "88x31 button, sign my guestbook",
+    "size": [
+      88,
+      31
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "text2"
+    ],
+    "defaults": {
+      "text": "SIGN MY",
+      "text2": "GUESTBOOK"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "frutiger_aero",
+  "label": "Frutiger Aero",
+  "kind": "assets",
+  "about": "Wallpapers from the Frutiger Aero Archive: auroras, aqua water, glass globes and bubbles, grass and sky. Large ones are full resolution, the Japanese stock scans are small.",
+  "source": "https://frutigeraeroarchive.org/wallpapers",
+  "licence": "Wallpapers by Microsoft, Apple, Asadal, Datacraft and other makers as collected by the Frutiger Aero Archive. No licence is given. Bundled at the owner's request for personal use; not for redistribution.",
+  "era": "2004 to 2013",
+  "order": 20,
+  "groups": [
+    "Auroras",
+    "Water and aqua",
+    "Glass and bubbles",
+    "Grass and sky",
+    "Light and swooshes"
+  ],
+  "min_purrmiere": 1
+}

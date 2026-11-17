@@ -1,0 +1,93 @@
+{
+  "id": "old_web_table_cell",
+  "group": "Frames",
+  "label": "Beveled table cells",
+  "size": [
+    400,
+    240
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "colour_a",
+      "label": "Cell colour",
+      "type": "colour",
+      "default": [
+        0.75,
+        0.75,
+        0.75,
+        1.0
+      ]
+    },
+    {
+      "key": "filled",
+      "label": "Fill the cells",
+      "type": "bool",
+      "default": true
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 200,
+      "min": 40,
+      "max": 1200
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 120,
+      "min": 40,
+      "max": 900
+    },
+    {
+      "key": "cols",
+      "label": "Cells across",
+      "type": "int",
+      "default": 2,
+      "min": 1,
+      "max": 8
+    },
+    {
+      "key": "rows",
+      "label": "Cells down",
+      "type": "int",
+      "default": 2,
+      "min": 1,
+      "max": 8
+    }
+  ],
+  "old_web": "table_cell",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "table_cell",
+    "group": "Frames",
+    "label": "Beveled table cells",
+    "size": [
+      200,
+      120
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "colour_a",
+      "filled"
+    ],
+    "defaults": {
+      "colour_a": [
+        0.75,
+        0.75,
+        0.75,
+        1.0
+      ],
+      "filled": true
+    }
+  }
+}

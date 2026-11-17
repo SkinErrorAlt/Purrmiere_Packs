@@ -1,0 +1,111 @@
+{
+  "id": "old_web_banner_glitter",
+  "group": "Banners",
+  "label": "Welcome banner, glitter",
+  "size": [
+    512,
+    112
+  ],
+  "full_frame": false,
+  "loop": 0.8,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "WELCOME"
+    },
+    {
+      "key": "colour_a",
+      "label": "Glitter",
+      "type": "colour",
+      "default": [
+        1.0,
+        0.4,
+        0.8,
+        1.0
+      ]
+    },
+    {
+      "key": "colour_b",
+      "label": "Background",
+      "type": "colour",
+      "default": [
+        0.15,
+        0.0,
+        0.25,
+        1.0
+      ]
+    },
+    {
+      "key": "text_dx",
+      "label": "Words moved across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "text_dy",
+      "label": "Words moved down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 256,
+      "min": 120,
+      "max": 960
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 56,
+      "min": 32,
+      "max": 240
+    }
+  ],
+  "old_web": "banner_glitter",
+  "frames": 8,
+  "fps": 10.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "banner_glitter",
+    "group": "Banners",
+    "label": "Welcome banner, glitter",
+    "size": [
+      256,
+      56
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 10.0,
+    "fields": [
+      "text",
+      "colour_a",
+      "colour_b"
+    ],
+    "defaults": {
+      "text": "WELCOME",
+      "colour_a": [
+        1.0,
+        0.4,
+        0.8,
+        1.0
+      ],
+      "colour_b": [
+        0.15,
+        0.0,
+        0.25,
+        1.0
+      ]
+    }
+  }
+}

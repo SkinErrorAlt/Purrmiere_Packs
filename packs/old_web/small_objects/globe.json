@@ -1,0 +1,32 @@
+{
+  "id": "old_web_globe",
+  "group": "Small objects",
+  "label": "Spinning globe",
+  "size": [
+    64,
+    64
+  ],
+  "full_frame": false,
+  "loop": 1.33333333333333,
+  "crisp": true,
+  "fields": [],
+  "old_web": "globe",
+  "frames": 16,
+  "fps": 12.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "globe",
+    "group": "Small objects",
+    "label": "Spinning globe",
+    "size": [
+      32,
+      32
+    ],
+    "scale": 2,
+    "frames": 16,
+    "fps": 12.0,
+    "fields": [],
+    "defaults": {}
+  }
+}

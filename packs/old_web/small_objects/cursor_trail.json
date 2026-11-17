@@ -1,0 +1,49 @@
+{
+  "id": "old_web_cursor_trail",
+  "group": "Small objects",
+  "label": "Cursor sparkle trail",
+  "size": [
+    400,
+    240
+  ],
+  "full_frame": false,
+  "loop": 2.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 200,
+      "min": 60,
+      "max": 960
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 120,
+      "min": 40,
+      "max": 540
+    }
+  ],
+  "old_web": "cursor_trail",
+  "frames": 24,
+  "fps": 12.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "cursor_trail",
+    "group": "Small objects",
+    "label": "Cursor sparkle trail",
+    "size": [
+      200,
+      120
+    ],
+    "scale": 2,
+    "frames": 24,
+    "fps": 12.0,
+    "fields": [],
+    "defaults": {}
+  }
+}

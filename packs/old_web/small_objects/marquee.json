@@ -1,0 +1,108 @@
+{
+  "id": "old_web_marquee",
+  "group": "Small objects",
+  "label": "Marquee text strip",
+  "size": [
+    600,
+    28
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "*** Welcome to my corner of the web! Thanks for stopping by, come back soon! ***"
+    },
+    {
+      "key": "colour_a",
+      "label": "Text colour",
+      "type": "colour",
+      "default": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "key": "colour_b",
+      "label": "Background",
+      "type": "colour",
+      "default": [
+        0.0,
+        0.0,
+        0.2,
+        1.0
+      ]
+    },
+    {
+      "key": "step",
+      "label": "Pixels moved each frame",
+      "type": "int",
+      "default": 1,
+      "min": 1,
+      "max": 16
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 300,
+      "min": 80,
+      "max": 1600
+    },
+    {
+      "key": "flow",
+      "label": "Scrolls toward",
+      "type": "enum",
+      "default": "left",
+      "options": [
+        "left",
+        "right"
+      ]
+    }
+  ],
+  "old_web": "marquee",
+  "frames": 1,
+  "fps": 15.0,
+  "scale": 2,
+  "live": true,
+  "catalogue": {
+    "id": "marquee",
+    "group": "Small objects",
+    "label": "Marquee text strip",
+    "size": [
+      300,
+      14
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 15.0,
+    "fields": [
+      "text",
+      "colour_a",
+      "colour_b",
+      "step"
+    ],
+    "defaults": {
+      "text": "*** Welcome to my corner of the web! Thanks for stopping by, come back soon! ***",
+      "colour_a": [
+        1.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "colour_b": [
+        0.0,
+        0.0,
+        0.2,
+        1.0
+      ],
+      "step": 1
+    },
+    "live": true
+  }
+}

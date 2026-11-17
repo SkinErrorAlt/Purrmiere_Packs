@@ -1,0 +1,67 @@
+{
+  "id": "old_web_arrows",
+  "group": "Small objects",
+  "label": "Bouncing arrow",
+  "size": [
+    80,
+    48
+  ],
+  "full_frame": false,
+  "loop": 0.666666666666667,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "direction",
+      "label": "Points",
+      "type": "enum",
+      "default": "right",
+      "options": [
+        "right",
+        "left",
+        "down",
+        "up"
+      ]
+    },
+    {
+      "key": "colour_a",
+      "label": "Main colour",
+      "type": "colour",
+      "default": [
+        1.0,
+        0.8,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "old_web": "arrows",
+  "frames": 8,
+  "fps": 12.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "arrows",
+    "group": "Small objects",
+    "label": "Bouncing arrow",
+    "size": [
+      40,
+      24
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 12.0,
+    "fields": [
+      "direction",
+      "colour_a"
+    ],
+    "defaults": {
+      "direction": "right",
+      "colour_a": [
+        1.0,
+        0.8,
+        0.0,
+        1.0
+      ]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "old_web_bubble",
+  "group": "Small objects",
+  "label": "Speech bubble",
+  "size": [
+    188,
+    78
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Words (a | starts a new line)",
+      "type": "text",
+      "default": "I made this page|all by myself!"
+    },
+    {
+      "key": "colour_a",
+      "label": "Outline and text",
+      "type": "colour",
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "key": "colour_b",
+      "label": "Inside",
+      "type": "colour",
+      "default": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "key": "tail_x",
+      "label": "Tail position (pixels)",
+      "type": "int",
+      "default": 7,
+      "min": 0,
+      "max": 400
+    }
+  ],
+  "old_web": "bubble",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "bubble",
+    "group": "Small objects",
+    "label": "Speech bubble",
+    "size": [
+      80,
+      40
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "colour_a",
+      "colour_b"
+    ],
+    "defaults": {
+      "text": "I made this page|all by myself!",
+      "colour_a": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "colour_b": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "auto_size": true
+  }
+}

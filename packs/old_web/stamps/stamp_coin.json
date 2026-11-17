@@ -1,0 +1,43 @@
+{
+  "id": "old_web_stamp_coin",
+  "group": "Stamps",
+  "label": "Stamp, coin",
+  "size": [
+    64,
+    64
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "framed",
+      "label": "Purple tile behind the stamp",
+      "type": "bool",
+      "default": true
+    }
+  ],
+  "old_web": "stamp_coin",
+  "frames": 8,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "stamp_coin",
+    "group": "Stamps",
+    "label": "Stamp, coin",
+    "size": [
+      32,
+      32
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 8.0,
+    "fields": [
+      "framed"
+    ],
+    "defaults": {
+      "framed": true
+    }
+  }
+}

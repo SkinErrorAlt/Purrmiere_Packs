@@ -1,0 +1,69 @@
+{
+  "id": "old_web_banner_rainbow",
+  "group": "Banners",
+  "label": "Welcome banner, rainbow",
+  "size": [
+    512,
+    96
+  ],
+  "full_frame": false,
+  "loop": 1.2,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "WELCOME"
+    },
+    {
+      "key": "colour_b",
+      "label": "Background",
+      "type": "colour",
+      "default": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 256,
+      "min": 160,
+      "max": 960
+    }
+  ],
+  "old_web": "banner_rainbow",
+  "frames": 12,
+  "fps": 10.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "banner_rainbow",
+    "group": "Banners",
+    "label": "Welcome banner, rainbow",
+    "size": [
+      256,
+      48
+    ],
+    "scale": 2,
+    "frames": 12,
+    "fps": 10.0,
+    "fields": [
+      "text",
+      "colour_b"
+    ],
+    "defaults": {
+      "text": "WELCOME",
+      "colour_b": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  }
+}

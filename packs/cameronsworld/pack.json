@@ -1,0 +1,32 @@
+{
+  "id": "cameronsworld",
+  "label": "Cameron's World",
+  "kind": "assets",
+  "about": "Real GeoCities GIFs from the Cameron's World collage, at their own size and speed. Animated ones loop at their own frame timing.",
+  "source": "https://www.cameronsworld.net",
+  "licence": "GIFs made by GeoCities users and collected by Cameron Askin for Cameron's World. No licence is given. Bundled at the owner's request for personal use; not for redistribution.",
+  "era": "1994 to 2009",
+  "order": 30,
+  "crisp": true,
+  "groups": [
+    "Under construction",
+    "Flames",
+    "Dividers",
+    "Backgrounds",
+    "Text",
+    "Icons and buttons",
+    "Books",
+    "Love",
+    "Space",
+    "Fantasy",
+    "Spooky",
+    "Animals",
+    "Nature",
+    "People",
+    "Music",
+    "Sports",
+    "Symbols",
+    "Misc"
+  ],
+  "min_purrmiere": 1
+}

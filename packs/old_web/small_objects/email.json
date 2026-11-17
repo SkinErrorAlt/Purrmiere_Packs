@@ -1,0 +1,32 @@
+{
+  "id": "old_web_email",
+  "group": "Small objects",
+  "label": "Spinning email envelope",
+  "size": [
+    64,
+    64
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [],
+  "old_web": "email",
+  "frames": 12,
+  "fps": 12.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "email",
+    "group": "Small objects",
+    "label": "Spinning email envelope",
+    "size": [
+      32,
+      32
+    ],
+    "scale": 2,
+    "frames": 12,
+    "fps": 12.0,
+    "fields": [],
+    "defaults": {}
+  }
+}

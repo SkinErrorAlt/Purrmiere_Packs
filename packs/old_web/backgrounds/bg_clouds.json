@@ -1,0 +1,78 @@
+{
+  "id": "old_web_bg_clouds",
+  "group": "Backgrounds",
+  "label": "Clouds tile",
+  "size": [
+    1920,
+    1080
+  ],
+  "full_frame": true,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "colour_b",
+      "label": "Sky",
+      "type": "colour",
+      "default": [
+        0.4,
+        0.6,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "key": "scale",
+      "label": "Pattern scale (whole pixels)",
+      "type": "int",
+      "default": 2,
+      "min": 1,
+      "max": 16
+    },
+    {
+      "key": "tile_x",
+      "label": "Pattern offset across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    {
+      "key": "tile_y",
+      "label": "Pattern offset down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": 0,
+      "max": 95
+    }
+  ],
+  "old_web": "bg_clouds",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "bg_clouds",
+    "group": "Backgrounds",
+    "label": "Clouds tile",
+    "size": [
+      128,
+      96
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "colour_b"
+    ],
+    "defaults": {
+      "colour_b": [
+        0.4,
+        0.6,
+        1.0,
+        1.0
+      ]
+    },
+    "tile": true
+  }
+}

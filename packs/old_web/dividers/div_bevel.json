@@ -1,0 +1,41 @@
+{
+  "id": "old_web_div_bevel",
+  "group": "Dividers",
+  "label": "Beveled grey rule",
+  "size": [
+    800,
+    8
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 400,
+      "min": 8,
+      "max": 1600
+    }
+  ],
+  "old_web": "div_bevel",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "div_bevel",
+    "group": "Dividers",
+    "label": "Beveled grey rule",
+    "size": [
+      400,
+      4
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [],
+    "defaults": {}
+  }
+}

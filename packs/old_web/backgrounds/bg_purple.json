@@ -1,0 +1,78 @@
+{
+  "id": "old_web_bg_purple",
+  "group": "Backgrounds",
+  "label": "Dark purple dither tile",
+  "size": [
+    1920,
+    1080
+  ],
+  "full_frame": true,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "colour_a",
+      "label": "Base colour",
+      "type": "colour",
+      "default": [
+        0.2,
+        0.0,
+        0.25,
+        1.0
+      ]
+    },
+    {
+      "key": "scale",
+      "label": "Pattern scale (whole pixels)",
+      "type": "int",
+      "default": 2,
+      "min": 1,
+      "max": 16
+    },
+    {
+      "key": "tile_x",
+      "label": "Pattern offset across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": 0,
+      "max": 7
+    },
+    {
+      "key": "tile_y",
+      "label": "Pattern offset down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": 0,
+      "max": 7
+    }
+  ],
+  "old_web": "bg_purple",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "bg_purple",
+    "group": "Backgrounds",
+    "label": "Dark purple dither tile",
+    "size": [
+      8,
+      8
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "colour_a"
+    ],
+    "defaults": {
+      "colour_a": [
+        0.2,
+        0.0,
+        0.25,
+        1.0
+      ]
+    },
+    "tile": true
+  }
+}

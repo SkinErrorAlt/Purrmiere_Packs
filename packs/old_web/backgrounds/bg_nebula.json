@@ -1,0 +1,58 @@
+{
+  "id": "old_web_bg_nebula",
+  "group": "Backgrounds",
+  "label": "Space nebula tile",
+  "size": [
+    1920,
+    1080
+  ],
+  "full_frame": true,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "scale",
+      "label": "Pattern scale (whole pixels)",
+      "type": "int",
+      "default": 2,
+      "min": 1,
+      "max": 16
+    },
+    {
+      "key": "tile_x",
+      "label": "Pattern offset across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": 0,
+      "max": 127
+    },
+    {
+      "key": "tile_y",
+      "label": "Pattern offset down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": 0,
+      "max": 127
+    }
+  ],
+  "old_web": "bg_nebula",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "bg_nebula",
+    "group": "Backgrounds",
+    "label": "Space nebula tile",
+    "size": [
+      128,
+      128
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [],
+    "defaults": {},
+    "tile": true
+  }
+}

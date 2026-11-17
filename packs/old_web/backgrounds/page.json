@@ -1,0 +1,31 @@
+{
+  "id": "old_web_page",
+  "group": "Backgrounds",
+  "label": "Plain page colour",
+  "size": [
+    1440,
+    1080
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "colour_a",
+      "label": "Page colour",
+      "type": "colour",
+      "default": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "old_web": "",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 1,
+  "live": false,
+  "catalogue": {}
+}

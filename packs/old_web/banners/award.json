@@ -1,0 +1,85 @@
+{
+  "id": "old_web_award",
+  "group": "Banners",
+  "label": "Neat page award badge",
+  "size": [
+    208,
+    224
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "NEAT PAGE"
+    },
+    {
+      "key": "text2",
+      "label": "Second line",
+      "type": "text",
+      "default": "OF THE DAY"
+    },
+    {
+      "key": "colour_a",
+      "label": "Main colour",
+      "type": "colour",
+      "default": [
+        0.0,
+        0.2,
+        0.8,
+        1.0
+      ]
+    },
+    {
+      "key": "text_dx",
+      "label": "Words moved across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "text_dy",
+      "label": "Words moved down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    }
+  ],
+  "old_web": "award",
+  "frames": 8,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "award",
+    "group": "Banners",
+    "label": "Neat page award badge",
+    "size": [
+      104,
+      112
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "text2",
+      "colour_a"
+    ],
+    "defaults": {
+      "text": "NEAT PAGE",
+      "text2": "OF THE DAY",
+      "colour_a": [
+        0.0,
+        0.2,
+        0.8,
+        1.0
+      ]
+    }
+  }
+}

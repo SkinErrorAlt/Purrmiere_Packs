@@ -1,0 +1,93 @@
+{
+  "id": "old_web_banner_chrome",
+  "group": "Banners",
+  "label": "Welcome banner, chrome",
+  "size": [
+    512,
+    112
+  ],
+  "full_frame": false,
+  "loop": 1.33333333333333,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "WELCOME"
+    },
+    {
+      "key": "colour_b",
+      "label": "Sky",
+      "type": "colour",
+      "default": [
+        0.0,
+        0.0,
+        0.3,
+        1.0
+      ]
+    },
+    {
+      "key": "text_dx",
+      "label": "Words moved across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "text_dy",
+      "label": "Words moved down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 256,
+      "min": 120,
+      "max": 960
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 56,
+      "min": 40,
+      "max": 240
+    }
+  ],
+  "old_web": "banner_chrome",
+  "frames": 16,
+  "fps": 12.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "banner_chrome",
+    "group": "Banners",
+    "label": "Welcome banner, chrome",
+    "size": [
+      256,
+      56
+    ],
+    "scale": 2,
+    "frames": 16,
+    "fps": 12.0,
+    "fields": [
+      "text",
+      "colour_b"
+    ],
+    "defaults": {
+      "text": "WELCOME",
+      "colour_b": [
+        0.0,
+        0.0,
+        0.3,
+        1.0
+      ]
+    }
+  }
+}

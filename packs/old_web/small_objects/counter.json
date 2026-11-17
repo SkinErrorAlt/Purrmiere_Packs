@@ -1,0 +1,75 @@
+{
+  "id": "old_web_counter",
+  "group": "Small objects",
+  "label": "Hit counter",
+  "size": [
+    130,
+    34
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "number",
+      "label": "Number shown",
+      "type": "int",
+      "default": 4527,
+      "min": 0,
+      "max": 999999999999
+    },
+    {
+      "key": "digits",
+      "label": "Digits",
+      "type": "int",
+      "default": 6,
+      "min": 1,
+      "max": 12
+    },
+    {
+      "key": "counting",
+      "label": "Count up while playing",
+      "type": "bool",
+      "default": false
+    },
+    {
+      "key": "rate",
+      "label": "Counts per second",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1000.0,
+      "step": 0.1
+    }
+  ],
+  "old_web": "counter",
+  "frames": 1,
+  "fps": 12.0,
+  "scale": 2,
+  "live": true,
+  "catalogue": {
+    "id": "counter",
+    "group": "Small objects",
+    "label": "Hit counter",
+    "size": [
+      65,
+      17
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 12.0,
+    "fields": [
+      "number",
+      "digits",
+      "counting",
+      "rate"
+    ],
+    "defaults": {
+      "number": 4527,
+      "digits": 6,
+      "counting": false,
+      "rate": 1.0
+    },
+    "live": true
+  }
+}

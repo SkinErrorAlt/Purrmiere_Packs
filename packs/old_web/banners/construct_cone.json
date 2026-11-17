@@ -1,0 +1,51 @@
+{
+  "id": "old_web_construct_cone",
+  "group": "Banners",
+  "label": "Under construction, cone",
+  "size": [
+    240,
+    168
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "UNDER"
+    },
+    {
+      "key": "text2",
+      "label": "Second line",
+      "type": "text",
+      "default": "CONSTRUCTION"
+    }
+  ],
+  "old_web": "construct_cone",
+  "frames": 8,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "construct_cone",
+    "group": "Banners",
+    "label": "Under construction, cone",
+    "size": [
+      120,
+      84
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "text2"
+    ],
+    "defaults": {
+      "text": "UNDER",
+      "text2": "CONSTRUCTION"
+    }
+  }
+}

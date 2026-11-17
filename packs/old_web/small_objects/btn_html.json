@@ -1,0 +1,67 @@
+{
+  "id": "old_web_btn_html",
+  "group": "Small objects",
+  "label": "88x31 button, valid HTML",
+  "size": [
+    176,
+    62
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Text",
+      "type": "text",
+      "default": "VALID"
+    },
+    {
+      "key": "text2",
+      "label": "Second line",
+      "type": "text",
+      "default": "HTML 4.01"
+    },
+    {
+      "key": "text_dx",
+      "label": "Words moved across (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    },
+    {
+      "key": "text_dy",
+      "label": "Words moved down (pixels)",
+      "type": "int",
+      "default": 0,
+      "min": -64,
+      "max": 64
+    }
+  ],
+  "old_web": "btn_html",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "btn_html",
+    "group": "Small objects",
+    "label": "88x31 button, valid HTML",
+    "size": [
+      88,
+      31
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "text2"
+    ],
+    "defaults": {
+      "text": "VALID",
+      "text2": "HTML 4.01"
+    }
+  }
+}

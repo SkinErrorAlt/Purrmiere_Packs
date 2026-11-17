@@ -1,0 +1,43 @@
+{
+  "id": "old_web_stamp_skull",
+  "group": "Stamps",
+  "label": "Stamp, skull",
+  "size": [
+    64,
+    64
+  ],
+  "full_frame": false,
+  "loop": 0.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "framed",
+      "label": "Purple tile behind the stamp",
+      "type": "bool",
+      "default": true
+    }
+  ],
+  "old_web": "stamp_skull",
+  "frames": 1,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "stamp_skull",
+    "group": "Stamps",
+    "label": "Stamp, skull",
+    "size": [
+      32,
+      32
+    ],
+    "scale": 2,
+    "frames": 1,
+    "fps": 8.0,
+    "fields": [
+      "framed"
+    ],
+    "defaults": {
+      "framed": true
+    }
+  }
+}

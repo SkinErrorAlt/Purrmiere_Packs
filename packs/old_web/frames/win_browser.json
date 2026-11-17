@@ -1,0 +1,85 @@
+{
+  "id": "old_web_win_browser",
+  "group": "Frames",
+  "label": "Retro browser window",
+  "size": [
+    640,
+    480
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "text",
+      "label": "Window title",
+      "type": "text",
+      "default": "My Cool Homepage"
+    },
+    {
+      "key": "text2",
+      "label": "Address",
+      "type": "text",
+      "default": "http://www.example.com/~me/"
+    },
+    {
+      "key": "colour_a",
+      "label": "Title bar colour",
+      "type": "colour",
+      "default": [
+        0.4,
+        0.0,
+        0.6,
+        1.0
+      ]
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 320,
+      "min": 200,
+      "max": 1200
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 240,
+      "min": 130,
+      "max": 900
+    }
+  ],
+  "old_web": "win_browser",
+  "frames": 8,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "win_browser",
+    "group": "Frames",
+    "label": "Retro browser window",
+    "size": [
+      320,
+      240
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 8.0,
+    "fields": [
+      "text",
+      "text2",
+      "colour_a"
+    ],
+    "defaults": {
+      "text": "My Cool Homepage",
+      "text2": "http://www.example.com/~me/",
+      "colour_a": [
+        0.4,
+        0.0,
+        0.6,
+        1.0
+      ]
+    }
+  }
+}

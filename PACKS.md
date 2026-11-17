@@ -21,6 +21,20 @@ by Ava with `Push to GitHub.bat`.
 5. Check it in Purrmiere: Settings, Pack library, set the source to `C:\Purrmiere_Packs` (a local folder works the
    same as GitHub), open the library and download an item from the new pack.
 
+## Notes on the steps (added when the builder was written)
+
+- Step 2: labels, tags, source urls and the order of items come from the pack's optional `items_meta.json` (see
+  FORMAT.md); without it an item is labelled from its file name. Keep it when moving or renaming files, the builder
+  refuses an entry that names an item that is not there.
+- Step 4: the builder needs Python 3 with Pillow (`pip install pillow`). `python tools/build_catalog.py --check` writes
+  nothing and exits 1 if a rebuild would change any file; run it before committing.
+- Old web code pack: after changing anything in `packs/old_web/_code/`, render its previews and data files again, then
+  rebuild:
+  1. `Godot_v4.7.2-stable_win64_console.exe --position 3900,60 --path <a Purrmiere copy>\project --script C:/Purrmiere_Packs/tools/old_web_render.gd`
+     (needs a window, it renders every piece; it uses only the pack's own code)
+  2. `python tools/old_web_write.py` (writes each `<group>/<id>.json`, the preview renders and `items_meta.json`)
+  3. `python tools/build_catalog.py`
+
 ## Publishing
 
 ```

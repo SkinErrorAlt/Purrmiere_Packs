@@ -1,0 +1,61 @@
+{
+  "id": "old_web_div_sparkle",
+  "group": "Dividers",
+  "label": "Sparkle line",
+  "size": [
+    640,
+    28
+  ],
+  "full_frame": false,
+  "loop": 0.8,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "colour_a",
+      "label": "Main colour",
+      "type": "colour",
+      "default": [
+        1.0,
+        0.4,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 320,
+      "min": 30,
+      "max": 1600
+    }
+  ],
+  "old_web": "div_sparkle",
+  "frames": 8,
+  "fps": 10.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "div_sparkle",
+    "group": "Dividers",
+    "label": "Sparkle line",
+    "size": [
+      320,
+      14
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 10.0,
+    "fields": [
+      "colour_a"
+    ],
+    "defaults": {
+      "colour_a": [
+        1.0,
+        0.4,
+        1.0,
+        1.0
+      ]
+    }
+  }
+}

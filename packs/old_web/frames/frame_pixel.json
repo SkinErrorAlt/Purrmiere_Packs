@@ -1,0 +1,95 @@
+{
+  "id": "old_web_frame_pixel",
+  "group": "Frames",
+  "label": "Pixel border frame with lights",
+  "size": [
+    320,
+    240
+  ],
+  "full_frame": false,
+  "loop": 1.0,
+  "crisp": true,
+  "fields": [
+    {
+      "key": "colour_a",
+      "label": "Frame colour",
+      "type": "colour",
+      "default": [
+        0.6,
+        0.0,
+        0.6,
+        1.0
+      ]
+    },
+    {
+      "key": "colour_b",
+      "label": "Corner gems",
+      "type": "colour",
+      "default": [
+        1.0,
+        0.8,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "key": "box_w",
+      "label": "Width (pixels)",
+      "type": "int",
+      "default": 160,
+      "min": 32,
+      "max": 1200
+    },
+    {
+      "key": "box_h",
+      "label": "Height (pixels)",
+      "type": "int",
+      "default": 120,
+      "min": 32,
+      "max": 900
+    },
+    {
+      "key": "spacing",
+      "label": "A light every (pixels)",
+      "type": "int",
+      "default": 8,
+      "min": 4,
+      "max": 32
+    }
+  ],
+  "old_web": "frame_pixel",
+  "frames": 8,
+  "fps": 8.0,
+  "scale": 2,
+  "live": false,
+  "catalogue": {
+    "id": "frame_pixel",
+    "group": "Frames",
+    "label": "Pixel border frame with lights",
+    "size": [
+      160,
+      120
+    ],
+    "scale": 2,
+    "frames": 8,
+    "fps": 8.0,
+    "fields": [
+      "colour_a",
+      "colour_b"
+    ],
+    "defaults": {
+      "colour_a": [
+        0.6,
+        0.0,
+        0.6,
+        1.0
+      ],
+      "colour_b": [
+        1.0,
+        0.8,
+        0.0,
+        1.0
+      ]
+    }
+  }
+}
