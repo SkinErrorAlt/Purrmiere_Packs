@@ -104,6 +104,25 @@ Kind notes:
 `size_bytes` is what downloading every item and the code costs (thumbnails and previews not counted). `updated` only
 changes when something in the pack's entry changes, so rebuilding without changes leaves every file as it was.
 
+## Code pack handles (on the Program monitor)
+
+A code pack's `_code/pack.gd` gives the monitor its handles:
+
+- `handles(id, size, values)` returns a list of `{id, at, look, name}` (`at` in layer pixels; looks `dot`, `ring`,
+  `arrow`, `corner`). This is all older Purrmiere versions ask for.
+- `handles(id, size, values, how)`: when Purrmiere passes `how = {"acts": true}`, each handle may also carry
+  `act` (`move` hands the press to the clip's own move, `fit` runs Fit clip below, `resize` with a `side` such as
+  `l`, `r`, `t`, `b`, `tl`; any other act is a live drag), `from` (the point an arrow handle is drawn from), `push`
+  (a screen offset in pixels), `label` (the undo step's name) and the looks `square`, `diamond`, `cross`, `button`.
+- `drag(id, handle_id, at, size, values)` returns the changed field values. With a 6th argument
+  `how = {"press": Vector2, "alt": bool}` it may also return `width`, `height`, `rect` (where the layer lands, in the
+  old layer's coordinates, so the opposite edge stays put) and `chip` (the text shown while dragging).
+- Optional `guides(id, size, values)` returns boxes to draw: `{kind: "outline" | "dashed" | "region", rect, name}`.
+- Optional `size_for(id, values)` returns the layer size a piece needs for its values (for example a counter's digits),
+  so Purrmiere resizes the layer when a value changes.
+
+Purrmiere counts each function's arguments, so packs written the old way keep working.
+
 ## On the user's PC
 
 - Cache root: Purrmiere's user data folder `packs/` (Settings shows it, with an Open folder button).

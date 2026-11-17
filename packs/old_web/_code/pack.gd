@@ -30,6 +30,15 @@ const RATE_PER_DOUBLE := 12.0
 const RATE_MAX := 1000.0
 const CELL_MIN := 4
 const TAIL_MAX := 400
+const SCALE_PUSH := 22.0
+const ARROW_PUSH := 16.0
+const DIGITS_PUSH := 16.0
+const TILE_MIN := 16
+const TILE_MAX := 16384
+const CORNER_SIDES: Array[Vector2i] = [Vector2i(-1, -1), Vector2i(1, -1), Vector2i(1, 1), Vector2i(-1, 1)]
+const EDGE_SIDES: Array[Vector2i] = [Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0)]
+const SIMPLE_IDS: PackedStringArray = ["words", "flow", "point", "digits", "rate", "tail", "spacing", "cells"]
+const SIMPLE_LOOKS: Dictionary = {"cross": "ring", "diamond": "arrow"}
 const DIRECTIONS: PackedStringArray = ["right", "left", "down", "up"]
 const DIR_VECTORS: Array[Vector2] = [Vector2.RIGHT, Vector2.LEFT, Vector2.DOWN, Vector2.UP]
 const FLOWS: PackedStringArray = ["left", "right"]
@@ -428,109 +437,290 @@ static func max_cells(span: float) -> int:
 	return maxi(int((span - 6.0 - float(Frames.CELL_GAP)) / float(Frames.CELL_GAP + CELL_MIN)), 1)
 
 
-static func handle(hid: String, at: Vector2, look: String, name: String) -> Dictionary:
-	return {"id": hid, "at": at, "look": look, "name": name}
+static func handle(hid: String, at: Vector2, look: String, name: String, extra: Dictionary = {}) -> Dictionary:
+	var out: Dictionary = {"id": hid, "at": at, "look": look, "name": name}
+	for k: Variant in extra.keys():
+		out[k] = extra[k]
+	return out
 
 
-static func handles(id: String, size: Vector2, values: Dictionary) -> Array[Dictionary]:
+static func handles(id: String, size: Vector2, values: Dictionary, how: Dictionary = {}) -> Array[Dictionary]:
 	var out: Array[Dictionary] = []
 	var cid: String = cid_of(id)
 	if cid.is_empty() or size.x < 1.0 or size.y < 1.0:
 		return out
 	var p: Dictionary = props_of(id, values)
+	if bool(how.get("acts", false)):
+		return act_handles(cid, p, size)
 	if Catalogue.is_tile(cid):
 		var cell: Rect2 = tile_cell(p, size)
 		out.append(handle("tile_shift", cell.get_center(), "ring", "Pattern offset, drag to slide the tiles"))
 		out.append(handle("tile_scale", cell.end, "corner", "Pattern size, in whole pixels"))
 		return out
-	var art: Vector2 = Vector2(Art.art_size(p))
-	var kv: Vector2 = Vector2(size.x / maxf(art.x, 1.0), size.y / maxf(art.y, 1.0))
-	var c: Vector2 = size * 0.5
 	if Catalogue.can_resize(cid):
 		var axes: String = String(Catalogue.resize_of(cid).get("axes", "xy"))
-		out.append(handle("box", size if axes == "xy" else Vector2(size.x, c.y), "corner", resize_name(cid)))
-	if Catalogue.moves_words(cid):
-		out.append(handle("words", (words_anchor(cid, art) + Vector2(Art.nudge_of(p))) * kv, "ring", "Move the words"))
-	if cid == "marquee":
-		var step: int = clampi(int(p.get("step", 1)), 1, STEP_MAX)
-		var sign_x: float = 1.0 if Bits.flows_right(p) else -1.0
-		out.append(handle("flow", c + Vector2(sign_x * flow_length(step, kv.x), 0.0), "arrow", "Scroll direction and speed"))
-	elif cid == "arrows":
-		var d: Vector2 = DIR_VECTORS[dir_index(p)]
-		var reach: float = absf(d.x) * size.x * 0.5 + absf(d.y) * size.y * 0.5
-		out.append(handle("point", c + d * reach, "arrow", "Which way the arrow points"))
-	elif cid == "counter":
-		out.append(handle("digits", Vector2(size.x, c.y), "arrow", "Digits shown"))
-		if bool(p.get("counting", false)):
-			out.append(handle("rate", Vector2(c.x, -rate_length(maxf(float(p.get("rate", 1.0)), 0.0), kv.y)), "arrow", "Counts per second"))
-	elif cid == "bubble":
-		var tip: int = Bits.tail_tip(p, int(art.x))
-		out.append(handle("tail", Vector2((float(tip) + 0.5) * kv.x, size.y - 0.5 * kv.y), "dot", "Speech bubble tail"))
-	if cid == "frame_pixel":
-		var inset: float = float(Frames.BAND / 2)
-		var sp: float = float(Frames.spacing_of(p))
-		out.append(handle("spacing", Vector2((inset + sp + 0.5) * kv.x, (inset + 0.5) * kv.y), "dot", "Light spacing, drag along the border"))
-	elif cid == "table_cell":
-		var first: Rect2i = Frames.cell_rect(p, Vector2i(art), 0, 0)
-		out.append(handle("cells", Vector2(first.end) * kv, "dot", "Number of cells, drag for more or fewer"))
+		out.append(handle("box", size if axes == "xy" else Vector2(size.x, size.y * 0.5), "corner", resize_name(cid)))
+	for h: Dictionary in act_handles(cid, p, size):
+		var hid: String = String(h["id"])
+		if SIMPLE_IDS.has(hid):
+			out.append(handle(hid, h["at"], String(SIMPLE_LOOKS.get(String(h["look"]), String(h["look"]))), String(h["name"])))
 	return out
 
 
-static func drag(id: String, handle_id: String, at: Vector2, size: Vector2, values: Dictionary) -> Dictionary:
+static func act_handles(cid: String, p: Dictionary, size: Vector2) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var tile: bool = Catalogue.is_tile(cid)
+	var c: Vector2 = size * 0.5
+	if tile or Catalogue.can_resize(cid):
+		out.append_array(resize_handles(cid, size, tile))
+	if tile:
+		var cell: Rect2 = tile_cell(p, size)
+		out.append(handle("tile_shift", cell.get_center(), "cross", "Pattern offset, drag to slide the tiles", {"act": "tile_shift"}))
+		out.append(handle("tile_scale", cell.end, "diamond", "Pattern size, in whole pixels", {"act": "tile_scale"}))
+		return out
+	var art: Vector2 = Vector2(Art.art_size(p))
+	var kv: Vector2 = Vector2(size.x / maxf(art.x, 1.0), size.y / maxf(art.y, 1.0))
+	out.append(handle("scale", Vector2(c.x, size.y), "diamond", "Pixel size, drag up or down for bigger or smaller pixels", {"act": "scale", "push": Vector2(0.0, SCALE_PUSH)}))
+	if Catalogue.moves_words(cid):
+		out.append(handle("words", (words_anchor(cid, art) + Vector2(Art.nudge_of(p))) * kv, "cross", "Move the words", {"act": "words"}))
+	if cid == "marquee":
+		var step: int = clampi(int(p.get("step", 1)), 1, STEP_MAX)
+		var sign_x: float = 1.0 if Bits.flows_right(p) else -1.0
+		out.append(handle("flow", c + Vector2(sign_x * flow_length(step, kv.x), 0.0), "arrow", "Scroll direction and speed", {"act": "flow", "from": c}))
+	elif cid == "arrows":
+		var d: Vector2 = DIR_VECTORS[dir_index(p)]
+		var reach: float = absf(d.x) * size.x * 0.5 + absf(d.y) * size.y * 0.5
+		out.append(handle("point", c + d * reach, "arrow", "Which way the arrow points", {"act": "point", "from": c, "push": d * ARROW_PUSH}))
+	elif cid == "counter":
+		out.append(handle("digits", Vector2(size.x, c.y), "diamond", "Digits shown", {"act": "digits", "push": Vector2(DIGITS_PUSH, 0.0)}))
+		if bool(p.get("counting", false)):
+			out.append(handle("rate", Vector2(c.x, -rate_length(maxf(float(p.get("rate", 1.0)), 0.0), kv.y)), "arrow", "Counts per second", {"act": "rate", "from": Vector2(c.x, 0.0)}))
+	elif cid == "bubble":
+		var tip: int = Bits.tail_tip(p, int(art.x))
+		out.append(handle("tail", Vector2((float(tip) + 0.5) * kv.x, size.y - 0.5 * kv.y), "dot", "Speech bubble tail", {"act": "tail"}))
+	if is_frame(cid):
+		out.append_array(frame_handles(cid, p, size, kv))
+	return out
+
+
+static func resize_handles(cid: String, size: Vector2, tile: bool) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var axes: String = "xy" if tile else String(Catalogue.resize_of(cid).get("axes", "xy"))
+	var name: String = "Background size" if tile else resize_name(cid)
+	var extra: Dictionary = {"act": "resize"}
+	if is_frame(cid):
+		extra["label"] = "Resize frame"
+	var corners: Array[Vector2] = [Vector2.ZERO, Vector2(size.x, 0.0), size, Vector2(0.0, size.y)]
+	if axes == "xy":
+		for i: int in 4:
+			var e: Dictionary = extra.duplicate()
+			e["side"] = CORNER_SIDES[i]
+			out.append(handle("c" + str(i), corners[i], "square", name, e))
+	for j: int in 4:
+		var side: Vector2i = EDGE_SIDES[j]
+		if (side.x != 0 and not axes.contains("x")) or (side.y != 0 and not axes.contains("y")):
+			continue
+		var e2: Dictionary = extra.duplicate()
+		e2["side"] = side
+		out.append(handle("s" + str(j), (corners[j] + corners[(j + 1) % 4]) * 0.5, "square", name, e2))
+	return out
+
+
+static func frame_handles(cid: String, p: Dictionary, size: Vector2, kv: Vector2) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var art: Vector2i = Art.art_size(p)
+	var title: Rect2i = Frames.title_rect(cid, art)
+	var move: Dictionary = {"act": "move"}
+	if title.size.x > 0:
+		var tr: Rect2 = Rect2(Vector2(title.position) * kv, Vector2(title.size) * kv)
+		out.append(handle("move", Vector2(tr.position.x + tr.size.x * 0.4, tr.get_center().y), "cross", "Drag the title bar to move the window", move))
+	elif cid == "frame_pixel":
+		out.append(handle("move", Vector2(size.x * 0.5, float(Frames.BAND) * 0.5 * kv.y), "cross", "Drag the border to move the frame", move))
+	else:
+		out.append(handle("move", Vector2(size.x * 0.5, 1.5 * kv.y), "cross", "Drag the edge to move the table", move))
+	var r: Rect2i = Frames.inner_rect(cid, art)
+	var inner: Rect2 = Rect2(Vector2(r.position) * kv, Vector2(r.size) * kv)
+	out.append(handle("fit", inner.position + Vector2(12.0, 12.0), "button", "Fit the clip below inside the frame", {"act": "fit"}))
+	if cid == "frame_pixel":
+		var inset: float = float(Frames.BAND / 2)
+		var sp: float = float(Frames.spacing_of(p))
+		out.append(handle("spacing", Vector2((inset + sp + 0.5) * kv.x, (inset + 0.5) * kv.y), "dot", "Light spacing, drag along the border", {"act": "spacing"}))
+	elif cid == "table_cell":
+		var first: Rect2i = Frames.cell_rect(p, art, 0, 0)
+		out.append(handle("cells", Vector2(first.end) * kv, "dot", "Number of cells, drag for more or fewer", {"act": "cells"}))
+	return out
+
+
+static func guides(id: String, size: Vector2, values: Dictionary) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	var cid: String = cid_of(id)
+	if cid.is_empty() or size.x < 1.0 or size.y < 1.0:
+		return out
+	var p: Dictionary = props_of(id, values)
+	var tile: bool = Catalogue.is_tile(cid)
+	if tile or Catalogue.can_resize(cid):
+		out.append({"kind": "outline", "rect": Rect2(Vector2.ZERO, size), "name": "Layer edge"})
+	if tile:
+		out.append({"kind": "dash", "rect": tile_cell(p, size), "name": "One tile"})
+	if is_frame(cid):
+		out.append({"kind": "dash", "rect": inner_rect(PREFIX + cid, size, values), "name": "Inside the frame"})
+	return out
+
+
+static func quantise(lo: float, hi: float, side: int, unit: float, least: int, most: int, start_lo: float, start_hi: float) -> Vector2:
+	var n: int = clampi(int(round((hi - lo) / maxf(unit, 0.0001))), least, most)
+	var span: float = float(n) * unit
+	if side > 0:
+		return Vector2(start_lo, start_lo + span)
+	if side < 0:
+		return Vector2(start_hi - span, start_hi)
+	var mid: float = (lo + hi) * 0.5
+	return Vector2(mid - span * 0.5, mid + span * 0.5)
+
+
+static func resize_drag(cid: String, p: Dictionary, size: Vector2, kv: Vector2, side: Vector2i, delta: Vector2, centred: bool) -> Dictionary:
+	var tile: bool = Catalogue.is_tile(cid)
+	var lo: Vector2 = Vector2.ZERO
+	var hi: Vector2 = size
+	if side.x > 0:
+		hi.x += delta.x
+	elif side.x < 0:
+		lo.x += delta.x
+	if side.y > 0:
+		hi.y += delta.y
+	elif side.y < 0:
+		lo.y += delta.y
+	if centred:
+		if side.x > 0:
+			lo.x -= delta.x
+		elif side.x < 0:
+			hi.x -= delta.x
+		if side.y > 0:
+			lo.y -= delta.y
+		elif side.y < 0:
+			hi.y -= delta.y
+	var sx: int = 0 if centred else side.x
+	var sy: int = 0 if centred else side.y
+	var unit: Vector2 = Vector2.ONE if tile else kv
+	var least: Vector2i = Vector2i(TILE_MIN, TILE_MIN)
+	var most: Vector2i = Vector2i(TILE_MAX, TILE_MAX)
+	if not tile:
+		var r: Dictionary = Catalogue.resize_of(cid)
+		least = Vector2i(int(r["min"][0]), int(r["min"][1]))
+		most = Vector2i(int(r["max"][0]), int(r["max"][1]))
+	var nx: Vector2 = Vector2(0.0, size.x)
+	var ny: Vector2 = Vector2(0.0, size.y)
+	if side.x != 0:
+		nx = quantise(lo.x, hi.x, sx, unit.x, least.x, most.x, 0.0, size.x)
+	if side.y != 0:
+		ny = quantise(lo.y, hi.y, sy, unit.y, least.y, most.y, 0.0, size.y)
+	var rect: Rect2 = Rect2(nx.x, ny.x, nx.y - nx.x, ny.y - ny.x)
+	var shown: Vector2i = Vector2i(int(round(rect.size.x / unit.x)), int(round(rect.size.y / unit.y)))
+	var out: Dictionary = {}
+	if tile:
+		out["width"] = shown.x
+		out["height"] = shown.y
+	else:
+		if side.x != 0:
+			out[Catalogue.BOX_W] = shown.x
+		if side.y != 0:
+			out[Catalogue.BOX_H] = shown.y
+		var q: Dictionary = p.duplicate()
+		for k: Variant in out.keys():
+			q[k] = out[k]
+		var real: Vector2 = Vector2(Art.art_size(q)) * kv
+		out["width"] = int(round(real.x))
+		out["height"] = int(round(real.y))
+	out["rect"] = rect
+	out["chip"] = "%d x %d pixels" % [shown.x, shown.y]
+	return out
+
+
+static func drag(id: String, handle_id: String, at: Vector2, size: Vector2, values: Dictionary, how: Dictionary = {}) -> Dictionary:
 	var cid: String = cid_of(id)
 	if cid.is_empty() or size.x < 1.0 or size.y < 1.0:
 		return {}
 	var p: Dictionary = props_of(id, values)
 	var art: Vector2 = Vector2(Art.art_size(p))
-	if Catalogue.is_tile(cid):
-		var cell: Rect2 = tile_cell(p, size)
-		if handle_id == "tile_shift":
-			var k: float = tile_k(p, size)
-			var o0: Vector2 = Vector2(float(p.get("tile_x", 0)), float(p.get("tile_y", 0)))
-			var d: Vector2 = at - cell.get_center()
-			return {"tile_x": posmod(int(round(o0.x + d.x / k)), maxi(int(art.x), 1)), "tile_y": posmod(int(round(o0.y + d.y / k)), maxi(int(art.y), 1))}
-		if handle_id == "tile_scale":
-			var q: float = size.y / BASE_H
-			var reach: Vector2 = at - cell.position
-			return {"scale": clampi(int(round(maxf(reach.x / maxf(art.x * q, 0.0001), reach.y / maxf(art.y * q, 0.0001)))), 1, SCALE_MAX)}
-		return {}
 	var kv: Vector2 = Vector2(size.x / maxf(art.x, 1.0), size.y / maxf(art.y, 1.0))
 	var c: Vector2 = size * 0.5
 	if handle_id == "box" and Catalogue.can_resize(cid):
 		var r: Dictionary = Catalogue.resize_of(cid)
 		var axes: String = String(r.get("axes", "xy"))
-		var out: Dictionary = {"box_w": clampi(int(round(at.x / kv.x)), int(r["min"][0]), int(r["max"][0]))}
+		var box: Dictionary = {"box_w": clampi(int(round(at.x / kv.x)), int(r["min"][0]), int(r["max"][0]))}
 		if axes.contains("y"):
-			out["box_h"] = clampi(int(round(at.y / kv.y)), int(r["min"][1]), int(r["max"][1]))
-		return out
-	if handle_id == "words" and Catalogue.moves_words(cid):
-		var anchor: Vector2 = words_anchor(cid, art)
+			box["box_h"] = clampi(int(round(at.y / kv.y)), int(r["min"][1]), int(r["max"][1]))
+		return box
+	var g: Dictionary = {}
+	for h: Dictionary in act_handles(cid, p, size):
+		if String(h["id"]) == handle_id:
+			g = h
+	if g.is_empty():
+		return {}
+	var press: Vector2 = how.get("press", g["at"])
+	var delta: Vector2 = at - press
+	var act: String = String(g.get("act", ""))
+	if act == "resize":
+		return resize_drag(cid, p, size, kv, g.get("side", Vector2i.ZERO), delta, bool(how.get("alt", false)))
+	if act == "tile_shift":
+		var k: float = tile_k(p, size)
+		var o0: Vector2 = Vector2(float(p.get("tile_x", 0)), float(p.get("tile_y", 0)))
+		var o: Vector2i = Vector2i(posmod(int(round(o0.x + delta.x / k)), maxi(int(art.x), 1)), posmod(int(round(o0.y + delta.y / k)), maxi(int(art.y), 1)))
+		return {"tile_x": o.x, "tile_y": o.y, "chip": "Tiles slid %d, %d pixels" % [o.x, o.y]}
+	if act == "tile_scale":
+		var q: float = size.y / BASE_H
+		var reach: Vector2 = at - tile_cell(p, size).position
+		var nk: int = clampi(int(round(maxf(reach.x / maxf(art.x * q, 0.0001), reach.y / maxf(art.y * q, 0.0001)))), 1, SCALE_MAX)
+		return {"scale": nk, "chip": "Pattern size %dx" % nk}
+	if act == "scale":
+		var was: float = press.y - c.y
+		if absf(was) < 1.0:
+			return {}
+		var pk: int = clampi(int(round(kv.y * (at.y - c.y) / was)), 1, SCALE_MAX)
+		var ns: Vector2 = art * float(pk)
+		return {"width": int(round(ns.x)), "height": int(round(ns.y)), "rect": Rect2(c - ns * 0.5, ns), "chip": "Pixel size %dx" % pk}
+	if act == "words":
+		var n0: Vector2i = Art.nudge_of(p)
 		var lim: Vector2i = Vector2i(mini(int(art.x / 2.0), NUDGE_MAX), mini(int(art.y / 2.0), NUDGE_MAX))
-		return {"text_dx": clampi(int(round(at.x / kv.x - anchor.x)), -lim.x, lim.x), "text_dy": clampi(int(round(at.y / kv.y - anchor.y)), -lim.y, lim.y)}
-	if handle_id == "flow" and cid == "marquee":
+		var n: Vector2i = Vector2i(clampi(n0.x + int(round(delta.x / kv.x)), -lim.x, lim.x), clampi(n0.y + int(round(delta.y / kv.y)), -lim.y, lim.y))
+		return {"text_dx": n.x, "text_dy": n.y, "chip": "Words moved %d, %d pixels" % [n.x, n.y]}
+	if act == "flow":
 		var dx: float = at.x - c.x
-		return {"flow": "right" if dx > 0.0 else "left", "step": clampi(int(round((absf(dx) / kv.x - FLOW_BASE) / FLOW_PER_STEP)), 1, STEP_MAX)}
-	if handle_id == "point" and cid == "arrows":
+		var flow: String = "right" if dx > 0.0 else "left"
+		var st: int = clampi(int(round((absf(dx) / kv.x - FLOW_BASE) / FLOW_PER_STEP)), 1, STEP_MAX)
+		return {"flow": flow, "step": st, "chip": "Scrolls %s, %d %s a frame" % [flow, st, "pixel" if st == 1 else "pixels"]}
+	if act == "point":
 		var v: Vector2 = at - c
-		return {"direction": ("right" if v.x >= 0.0 else "left") if absf(v.x) >= absf(v.y) else ("down" if v.y >= 0.0 else "up")}
-	if handle_id == "digits" and cid == "counter":
-		return {"digits": clampi(int(round((at.x / kv.x - 5.0) / 10.0)), 1, DIGITS_MAX)}
-	if handle_id == "rate" and cid == "counter":
+		var dir: String = ("right" if v.x >= 0.0 else "left") if absf(v.x) >= absf(v.y) else ("down" if v.y >= 0.0 else "up")
+		var turned: Dictionary = p.duplicate()
+		turned["direction"] = dir
+		var size2: Vector2 = Vector2(Art.art_size(turned)) * kv
+		return {"direction": dir, "width": int(round(size2.x)), "height": int(round(size2.y)), "rect": Rect2(c - size2 * 0.5, size2), "chip": "Points " + dir}
+	if act == "digits":
+		var digits: int = clampi(int(round(((size.x + delta.x) / kv.x - 5.0) / 10.0)), 1, DIGITS_MAX)
+		var counted: Dictionary = p.duplicate()
+		counted["digits"] = digits
+		var w: float = float(Art.art_size(counted).x) * kv.x
+		return {"digits": digits, "width": int(round(w)), "rect": Rect2(0.0, 0.0, w, size.y), "chip": "%d %s" % [digits, "digit" if digits == 1 else "digits"]}
+	if act == "rate":
 		var up: float = maxf(-at.y / kv.y, 0.0)
 		var rate: float = clampf(pow(2.0, (up - RATE_BASE) / RATE_PER_DOUBLE) - 1.0, 0.0, RATE_MAX)
-		return {"rate": snappedf(rate, 0.1) if rate < 10.0 else roundf(rate)}
-	if handle_id == "tail" and cid == "bubble":
-		return {"tail_x": clampi(int(round(at.x / kv.x - 0.5)), 3, maxi(int(art.x) - 4, 3))}
-	if handle_id == "spacing" and cid == "frame_pixel":
+		rate = snappedf(rate, 0.1) if rate < 10.0 else roundf(rate)
+		return {"rate": rate, "chip": "%s counts a second" % String.num(rate, 1).trim_suffix(".0")}
+	if act == "tail":
+		var tip: int = clampi(int(round(at.x / kv.x - 0.5)), 3, maxi(int(art.x) - 4, 3))
+		return {"tail_x": tip, "chip": "Tail at %d pixels" % tip}
+	if act == "spacing":
 		var inset: float = float(Frames.BAND / 2)
-		return {"spacing": clampi(int(round(at.x / kv.x - 0.5 - inset)), Frames.SPACING_MIN, Frames.SPACING_MAX)}
-	if handle_id == "cells" and cid == "table_cell":
+		var sp: int = clampi(int(round(at.x / kv.x - 0.5 - inset)), Frames.SPACING_MIN, Frames.SPACING_MAX)
+		return {"spacing": sp, "chip": "A light every %d pixels" % sp}
+	if act == "cells":
 		var gap: float = float(Frames.CELL_GAP)
 		var cw: float = maxf(at.x / kv.x - 3.0 - gap, 1.0)
 		var ch: float = maxf(at.y / kv.y - 3.0 - gap, 1.0)
 		var cols: int = clampi(int(round((art.x - 6.0 - gap) / (cw + gap))), 1, mini(Frames.CELLS_MAX, max_cells(art.x)))
 		var rows: int = clampi(int(round((art.y - 6.0 - gap) / (ch + gap))), 1, mini(Frames.CELLS_MAX, max_cells(art.y)))
-		return {"cols": cols, "rows": rows}
+		return {"cols": cols, "rows": rows, "chip": "%d across, %d down" % [cols, rows]}
 	return {}
 
 

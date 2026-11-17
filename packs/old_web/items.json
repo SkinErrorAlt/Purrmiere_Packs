@@ -69,6 +69,6 @@
     {"path": "_code/old_web_paint_frames.gd", "size": 15450, "sha256": "c7c7dcb212921e50c897fa21b015439084930b79408f2a6e8a433d620ea6491b"},
     {"path": "_code/old_web_paint_tiles.gd", "size": 7136, "sha256": "e6a3f2b33ca7b8439f5f8c6b74d729ce0226eaf977fb74a7e82739fad45efe2a"},
     {"path": "_code/old_web_px.gd", "size": 20014, "sha256": "68a0d7fc01c17dfcbd97ba1914eb894d04823fd6b413d1f78351d37e51a3527f"},
-    {"path": "_code/pack.gd", "size": 25399, "sha256": "90994194a1caa7f95a4927a2c7b208bdb830cd909a69471d2b4b38ac179c964f"}
+    {"path": "_code/pack.gd", "size": 33967, "sha256": "d0ae1ff0b131b2395e5ee1cf115764378fb98c692090e1a7d7ade184422e8036"}
   ]
 }
